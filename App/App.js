@@ -11,7 +11,7 @@ export default function App() {
   return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Giaodien' screenOptions={{headerShown:false}}>
-          <Stack.Screen name='giaodien' component={Giaodien}/>
+          {/* <Stack.Screen name='giaodien' component={Giaodien}/> */}
           <Stack.Screen name='Home1' component={Home1}/>
         </Stack.Navigator>
       </NavigationContainer>
