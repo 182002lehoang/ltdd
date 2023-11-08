@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
 
-const Giaodien = () => {
+const Giaodien = ({navigation}) => {
     return (
         <View style={styles.view}>
             <Image style={styles.img} source={require('../Img/giaodien.png')}>
@@ -9,7 +9,9 @@ const Giaodien = () => {
             </Image>
             <Text style={styles.text}>Cửa hàng quần áo.</Text>
             <Text style={styles.text1}>Tận hưởng mua hàng trực tuyến với những trải nghiệm tốt nhất tại cửa hàng.</Text>
-            <Pressable style={styles.pre}>
+            <Pressable style={styles.pre} onPress={()=>{
+                navigation.navigate('Home1')
+            }}>
                 <TextInput style={styles.ip} placeholder="Get Started"></TextInput>
             </Pressable>
         </View>
@@ -21,15 +23,15 @@ const styles = StyleSheet.create({
         flex: 1
     },
     img: {
-        width: 550,
-        height: 400,
+        width: 650,
+        height: 500,
         resizeMode: "contain",
 
     },
     text: {
         fontSize: 35,
         fontWeight: '500',
-        bottom: 20,
+        bottom: 30,
         margin:10
     },
     text1: {
