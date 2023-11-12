@@ -11,7 +11,7 @@ const Home1 = () => {
                 <Text style={styles.text}>Chào mừng bạn đến với cửa hàng.</Text>
                 <Pressable>
                     <Image style={styles.img1} source={require('../Img/profile.png')}></Image>
-                    <Text style={styles.text4}></Text>
+                    <Text style={styles.text4}>{user.name1}</Text>
                 </Pressable>
             </View>
             <View style={styles.view2}>

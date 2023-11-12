@@ -19,7 +19,16 @@ const dataao =[
     img:require('../App/Img/aothun4.png'),
     money:'300.000'
    },
-   
+   {
+      email: 'abc',
+      pass: 123,
+      name1:'John'
+   },
+   {
+      email: 'abc1',
+      pass: 123,
+      name1:'Jin'
+   }
     
 
 ]

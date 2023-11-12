@@ -2,6 +2,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
 import datamail from "../datamail";
+import dataao from "../dataao";
 
 const Login = () => {
     const navigation = useNavigation();
@@ -12,9 +13,9 @@ const Login = () => {
    
 
     const handleCheck = () => {
-        const user = datamail.find((user) => user.email == name && user.pass == pas );
+        const user = dataao.find((user) => user.email == name && user.pass == pas );
         if (user) {
-            navigation.navigate('Home1');
+            navigation.navigate('Home1',user);
         } else {
             alert('ko thanh cong');
         }
