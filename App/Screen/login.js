@@ -1,21 +1,23 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, TouchableOpacity } from 'react-native';
 //import datamail from "../datamail";
 import dataao from "../dataao";
 
 const Login = () => {
     const navigation = useNavigation();
-   // const [check, setCheck] = useState([]);
+    // const [check, setCheck] = useState([]);
     const route = useRoute();
     const [name, setName] = useState();
     const [pas, setPas] = useState();
-   
+    const [bas, setBas] = useState(true);
+
+
 
     const handleCheck = () => {
-        const user = dataao.find((user) => user.email == name && user.pass == pas );
+        const user = dataao.find((user) => user.email == name && user.pass == pas);
         if (user) {
-            navigation.navigate('Home1',user);
+            navigation.navigate('Home1', user);
         } else {
             alert('ko thanh cong');
         }
@@ -23,38 +25,37 @@ const Login = () => {
 
 
 
-return (
-    <View style={styles.view}>
-        <Image style={styles.img} source={require('../Img/font.png')}></Image>
-        <Text style={styles.text}> Đăng nhập</Text>
-        <View style={styles.view1}>
-            <TextInput style={styles.ip} placeholder="Email" value={name} onChangeText={(text) => setName(text)}>
+    return (
+        <View style={styles.view}>
+            <Image style={styles.img} source={require('../Img/font.png')}></Image>
+            <Text style={styles.text}> Đăng nhập</Text>
+            <View style={styles.view1}>
+                <TextInput style={styles.ip} placeholder="Email" value={name} onChangeText={(text) => setName(text)}>
 
-            </TextInput>
-            <Image style={styles.img1} source={require('../Img/user.png')}></Image>
+                </TextInput>
+                <Image style={styles.img1} source={require('../Img/user.png')}></Image>
+            </View>
+            <View style={styles.view1}>
+                <TextInput style={styles.ip1} placeholder="Password" value={pas} onChangeText={(text) => setPas(text)} secureTextEntry={bas}>
+
+                </TextInput>
+
+                <TouchableOpacity style={styles.tch} onPress={() => {
+                        setBas(!bas)
+                }}>
+                    {bas ? (<Image style={styles.img1} source={require('../Img/view.png')}></Image>
+                    ) : (<Image style={styles.img1} source={require('../Img/unview.png')}></Image>)}
+
+                </TouchableOpacity>
+
+            </View>
+            <Pressable style={styles.pre} onPress={() => {
+                handleCheck();
+            }} >
+                <Text style={styles.text1}>Submit</Text>
+            </Pressable>
         </View>
-        <View style={styles.view1}>
-            <TextInput style={styles.ip1} placeholder="Password" value={pas} onChangeText={(text) => setPas(text)}>
-
-            </TextInput>
-            {/* <Pressable onPress={() => handleCheck(item.id)}>
-                    {check.includes(item.id) ? (
-                        <Image style={styles.img1} source={require('../Img/view.png')}></Image>
-                    ):(
-                     <Image style={styles.img1} source={require('../Img/unview.png')}></Image>
-                    )}
-
-               </Pressable> */}
-            <Image style={styles.img1} source={require('../Img/view.png')}></Image>
-
-        </View>
-        <Pressable style={styles.pre} onPress={() => {
-           handleCheck();
-        }} >
-            <Text style={styles.text1}>Submit</Text>
-        </Pressable>
-    </View>
-)
+    )
 }
 
 const styles = StyleSheet.create({
@@ -111,11 +112,13 @@ const styles = StyleSheet.create({
         width: 25,
         height: 25,
         backgroundColor: 'white',
-        margin: -30
+        margin: -30,
+        
     },
     pre: {
         alignItems: 'center',
-        padding: 60
+        padding: 60,
+        
     },
     text1: {
         fontSize: 30,
@@ -124,8 +127,12 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 10,
         backgroundColor: 'white',
-        textAlign: 'center'
+        textAlign: 'center',
+        
 
+    },
+    tch:{
+        bottom:-15
     }
 
 })

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList, SectionList } from 'react-native';
 import dataao from "../dataao";
 import { useRoute } from "@react-navigation/native";
 const Home1 = ({navigation}) => {
@@ -55,6 +55,7 @@ const Home1 = ({navigation}) => {
                
                 
             </View>
+            
             <FlatList
                 numColumns={2}
                 data={ao}
@@ -64,11 +65,65 @@ const Home1 = ({navigation}) => {
                     }}>
                         <Image style={styles.img3} source={item.img}></Image>
                         <Text style={styles.text3}>{item.money}</Text>
+                       
                     </Pressable>
+                    
                 )}
                 keyExtractor={item => item.id}
             >
+                 
+            </FlatList>
+            <Text style={styles.text1}>ÁO</Text>
+            <View style={styles.pre} >
+                <Pressable onPress={() => {
+                    setAo(dataao)
+                }}>
+                    <Text style={styles.text2}>tất cả</Text>
+                </Pressable>
+                <Pressable onPress={() => {
+                    const ao = dataao.filter((user) => {
+                        return user.mota == 'ao thun'
+                    })
+                    setAo(ao)
+                }}>
+                    <Text style={styles.text2}>áo thun</Text>
+                </Pressable>
 
+                <Pressable onPress={() => {
+                    const ao = dataao.filter((user) => {
+                        return user.mota == 'ao so mi'
+                    })
+                    setAo(ao)
+                }}>
+                     <Text style={styles.text2}>áo sơ mi</Text>
+                </Pressable>
+                <Pressable onPress={() => {
+                    const ao = dataao.filter((user) => {
+                        return user.mota == 'ao khoac'
+                    })
+                    setAo(ao)
+                }}>
+                    <Text style={styles.text2}>áo khoác</Text>
+                </Pressable>
+               
+                
+            </View>
+            <FlatList
+                numColumns={2}
+                data={ao}
+                renderItem={({ item }) => (
+                    <Pressable style={styles.view3} onPress={()=>{
+                        navigation.navigate('Home2',item)
+                    }}>
+                        <Image style={styles.img3} source={item.img}></Image>
+                        <Text style={styles.text3}>{item.money}</Text>
+                       
+                    </Pressable>
+                    
+                )}
+                keyExtractor={item => item.id}
+            >
+                 
             </FlatList>
         </View>
     )
