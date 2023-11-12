@@ -10,7 +10,7 @@ const Giaodien = ({navigation}) => {
             <Text style={styles.text}>Cửa hàng quần áo.</Text>
             <Text style={styles.text1}>Tận hưởng mua hàng trực tuyến với những trải nghiệm tốt nhất tại cửa hàng.</Text>
             <Pressable style={styles.pre} onPress={()=>{
-                navigation.navigate('Home1')
+                navigation.navigate('Login')
             }}>
                 <TextInput style={styles.ip} placeholder="Get Started"></TextInput>
             </Pressable>

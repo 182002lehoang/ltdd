@@ -18,8 +18,8 @@ const dataao =[
     id : 4,
     img:require('../App/Img/aothun4.png'),
     money:'300.000'
-   }
-
+   },
+   
     
 
 ]
