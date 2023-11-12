@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList } from 'react-native';
 import dataao from "../dataao";
 import { useRoute } from "@react-navigation/native";
 const Home1 = () => {
     const route = useRoute();
     const user = route.params;
+    const [ao, setAo] = useState(dataao);
     return (
         <View style={styles.view}>
             <View style={styles.view1}>
@@ -20,15 +21,43 @@ const Home1 = () => {
                 </TextInput>
             </View>
             <Text style={styles.text1}>ÁO</Text>
-            <Pressable style={styles.pre} >
-                <Text style={styles.text2}>tất cả</Text>
-                <Text style={styles.text2}>áo thun</Text>
-                <Text style={styles.text2}>áo sơ mi</Text>
-                <Text style={styles.text2}>áo khoác</Text>
-            </Pressable>
+            <View style={styles.pre} >
+                <Pressable onPress={() => {
+                    setAo(dataao)
+                }}>
+                    <Text style={styles.text2}>tất cả</Text>
+                </Pressable>
+                <Pressable onPress={() => {
+                    const ao = dataao.filter((user) => {
+                        return user.mota == 'ao thun'
+                    })
+                    setAo(ao)
+                }}>
+                    <Text style={styles.text2}>áo thun</Text>
+                </Pressable>
+
+                <Pressable onPress={() => {
+                    const ao = dataao.filter((user) => {
+                        return user.mota == 'ao so mi'
+                    })
+                    setAo(ao)
+                }}>
+                     <Text style={styles.text2}>áo sơ mi</Text>
+                </Pressable>
+                <Pressable onPress={() => {
+                    const ao = dataao.filter((user) => {
+                        return user.mota == 'ao khoac'
+                    })
+                    setAo(ao)
+                }}>
+                    <Text style={styles.text2}>áo khoác</Text>
+                </Pressable>
+               
+                
+            </View>
             <FlatList
                 numColumns={2}
-                data={dataao}
+                data={ao}
                 renderItem={({ item }) => (
                     <Pressable style={styles.view3}>
                         <Image style={styles.img3} source={item.img}></Image>

@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Pressable, TextInput } from 'react-native';
-import datamail from "../datamail";
+//import datamail from "../datamail";
 import dataao from "../dataao";
 
 const Login = () => {
