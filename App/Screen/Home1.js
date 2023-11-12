@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList } from 'react-native';
 import dataao from "../dataao";
 import { useRoute } from "@react-navigation/native";
-const Home1 = () => {
+const Home1 = ({navigation}) => {
     const route = useRoute();
     const user = route.params;
     const [ao, setAo] = useState(dataao);
@@ -59,7 +59,9 @@ const Home1 = () => {
                 numColumns={2}
                 data={ao}
                 renderItem={({ item }) => (
-                    <Pressable style={styles.view3}>
+                    <Pressable style={styles.view3} onPress={()=>{
+                        navigation.navigate('Home2',item)
+                    }}>
                         <Image style={styles.img3} source={item.img}></Image>
                         <Text style={styles.text3}>{item.money}</Text>
                     </Pressable>
