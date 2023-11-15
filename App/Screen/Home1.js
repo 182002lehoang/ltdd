@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList, SectionList } from 'react-native';
 import dataao from "../dataao";
 import { useRoute } from "@react-navigation/native";
-const Home1 = ({navigation}) => {
+import dataquan from "../dataquan";
+// import dataquan from "../dataquan";
+const Home1 = ({ navigation }) => {
     const route = useRoute();
     const user = route.params;
     const [ao, setAo] = useState(dataao);
@@ -20,7 +22,7 @@ const Home1 = ({navigation}) => {
                 <TextInput style={styles.ip} placeholder="Tìm kiếm tại đây">
                 </TextInput>
             </View>
-            <Text style={styles.text1}>ÁO</Text>
+            <Text style={styles.text1}>ÁO QUẦN</Text>
             <View style={styles.pre} >
                 <Pressable onPress={() => {
                     setAo(dataao)
@@ -29,7 +31,7 @@ const Home1 = ({navigation}) => {
                 </Pressable>
                 <Pressable onPress={() => {
                     const ao = dataao.filter((user) => {
-                        return user.mota == 'ao thun'
+                        return user.mota == 'Áo thun'
                     })
                     setAo(ao)
                 }}>
@@ -38,93 +40,83 @@ const Home1 = ({navigation}) => {
 
                 <Pressable onPress={() => {
                     const ao = dataao.filter((user) => {
-                        return user.mota == 'ao so mi'
+                        return user.mota == 'Áo sơ mi'
                     })
                     setAo(ao)
                 }}>
-                     <Text style={styles.text2}>áo sơ mi</Text>
+                    <Text style={styles.text2}>áo sơ mi</Text>
                 </Pressable>
                 <Pressable onPress={() => {
                     const ao = dataao.filter((user) => {
-                        return user.mota == 'ao khoac'
+                        return user.mota == 'Áo khoác'
                     })
                     setAo(ao)
                 }}>
                     <Text style={styles.text2}>áo khoác</Text>
                 </Pressable>
-               
-                
+
+
             </View>
-            
-            <FlatList
-                numColumns={2}
-                data={ao}
-                renderItem={({ item }) => (
-                    <Pressable style={styles.view3} onPress={()=>{
-                        navigation.navigate('Home2',item)
-                    }}>
-                        <Image style={styles.img3} source={item.img}></Image>
-                        <Text style={styles.text3}>{item.money}</Text>
-                       
-                    </Pressable>
-                    
-                )}
-                keyExtractor={item => item.id}
-            >
-                 
-            </FlatList>
-            <Text style={styles.text1}>ÁO</Text>
-            <View style={styles.pre} >
-                <Pressable onPress={() => {
-                    setAo(dataao)
-                }}>
-                    <Text style={styles.text2}>tất cả</Text>
-                </Pressable>
+            <View style={styles.pre1} >
                 <Pressable onPress={() => {
                     const ao = dataao.filter((user) => {
-                        return user.mota == 'ao thun'
+                        return user.mota == 'Quần sort'
                     })
                     setAo(ao)
                 }}>
-                    <Text style={styles.text2}>áo thun</Text>
+                    <Text style={styles.text2}>quần sort</Text>
+                </Pressable>
+                <Pressable onPress={() => {
+                    const ao = dataao.filter((user) => {
+                        return user.mota == 'Quần tây'
+                    })
+                    setAo(ao)
+                }}>
+                    <Text style={styles.text2}>quần tây</Text>
                 </Pressable>
 
                 <Pressable onPress={() => {
                     const ao = dataao.filter((user) => {
-                        return user.mota == 'ao so mi'
+                        return user.mota == 'Quần jean'
                     })
                     setAo(ao)
                 }}>
-                     <Text style={styles.text2}>áo sơ mi</Text>
+                    <Text style={styles.text2}>quần jean</Text>
                 </Pressable>
                 <Pressable onPress={() => {
                     const ao = dataao.filter((user) => {
-                        return user.mota == 'ao khoac'
+                        return user.mota == 'Quần thun'
                     })
                     setAo(ao)
                 }}>
-                    <Text style={styles.text2}>áo khoác</Text>
+                    <Text style={styles.text2}>quần thun</Text>
                 </Pressable>
-               
-                
+
+
             </View>
+
             <FlatList
                 numColumns={2}
                 data={ao}
                 renderItem={({ item }) => (
-                    <Pressable style={styles.view3} onPress={()=>{
-                        navigation.navigate('Home2',item)
+                    <Pressable style={styles.view3} onPress={() => {
+                        navigation.navigate('Home2', item)
                     }}>
                         <Image style={styles.img3} source={item.img}></Image>
-                        <Text style={styles.text3}>{item.money}</Text>
-                       
+                        <Text style={styles.text5}>{item.mota}</Text>
+                        <View style={styles.view4}>
+                            <Text style={styles.text3}>{item.money}</Text>
+                            <Image style={styles.img4} source={require('../Img/add.png')}></Image>
+                        </View>
                     </Pressable>
-                    
+
                 )}
                 keyExtractor={item => item.id}
             >
-                 
+
             </FlatList>
+
+
         </View>
     )
 }
@@ -175,7 +167,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        bottom: 10
+        bottom: 10,
+        margin: 10
 
     },
     text2: {
@@ -203,8 +196,33 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center'
 
+    },
+    pre1: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        bottom: 10,
+        margin: 10
+    },
+    view4: {
+        flexDirection:'row',
+        justifyContent:'space-around'
+    },
+    text3: {
+        fontSize: 20,
+        justifyContent: 'center',
+        textAlign: 'center',
+        left:-12
+    },
+    img4:{
+        height:20,
+        width:20
+    },
+    text5:{
+        fontSize:20,
+        fontWeight:'500',
+        left:20
     }
-
 
 })
 export default Home1;

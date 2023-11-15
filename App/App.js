@@ -16,7 +16,7 @@ export default function App() {
           {/* <Stack.Screen name='giaodien' component={Giaodien}/> */}
           <Stack.Screen name='Login' component={Login}/>
           <Stack.Screen name='Home1' component={Home1}/>
-          {/* <Stack.Screen name='Home2' component={Home2}/> */}
+          <Stack.Screen name='Home2' component={Home2}/>
           
 
         </Stack.Navigator>
