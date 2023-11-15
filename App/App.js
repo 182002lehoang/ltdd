@@ -6,7 +6,7 @@ import Giaodien from './Screen/Giaodien';
 import Home1 from './Screen/Home1';
 import Login from './Screen/login';
 import Home2 from './Screen/Home2';
-
+import Taikhoan from './Screen/User';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
           <Stack.Screen name='Login' component={Login}/>
           <Stack.Screen name='Home1' component={Home1}/>
           <Stack.Screen name='Home2' component={Home2}/>
-          
+          <Stack.Screen name='Taikhoan' component={Taikhoan}/>
 
         </Stack.Navigator>
       </NavigationContainer>

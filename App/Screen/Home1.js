@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList, SectionList } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList } from 'react-native';
 import dataao from "../dataao";
 import { useRoute } from "@react-navigation/native";
-import dataquan from "../dataquan";
-// import dataquan from "../dataquan";
+
 const Home1 = ({ navigation }) => {
     const route = useRoute();
     const user = route.params;
     const [ao, setAo] = useState(dataao);
+  //  const [count, setCount] = useState();
     return (
         <View style={styles.view}>
             <View style={styles.view1}>
                 <Text style={styles.text}>Chào mừng bạn đến với cửa hàng.</Text>
-                <Pressable>
+                <Pressable onPress={()=>{
+                    navigation.navigate('Taikhoan',user)
+                }}>
                     <Image style={styles.img1} source={require('../Img/profile.png')}></Image>
                     <Text style={styles.text4}>{user.name1}</Text>
                 </Pressable>
@@ -106,7 +108,7 @@ const Home1 = ({ navigation }) => {
                         <Text style={styles.text5}>{item.mota}</Text>
                         <View style={styles.view4}>
                             <Text style={styles.text3}>{item.money}</Text>
-                            <Image style={styles.img4} source={require('../Img/add.png')}></Image>
+                            <Image style={styles.img4} source={require('../Img/add.png')} ></Image>
                         </View>
                     </Pressable>
 
@@ -205,23 +207,23 @@ const styles = StyleSheet.create({
         margin: 10
     },
     view4: {
-        flexDirection:'row',
-        justifyContent:'space-around'
+        flexDirection: 'row',
+        justifyContent: 'space-around'
     },
     text3: {
         fontSize: 20,
         justifyContent: 'center',
         textAlign: 'center',
-        left:-12
+        left: -12
     },
-    img4:{
-        height:20,
-        width:20
+    img4: {
+        height: 20,
+        width: 20
     },
-    text5:{
-        fontSize:20,
-        fontWeight:'500',
-        left:20
+    text5: {
+        fontSize: 20,
+        fontWeight: '500',
+        left: 20
     }
 
 })
