@@ -1,15 +1,20 @@
 import { useRoute } from "@react-navigation/native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Image, Pressable } from "react-native";
+import dataao from "../dataao";
 
 const Home2 = ({ navigation }) => {
     const route = useRoute();
     const user = route.params;
+    const [count,setCount] = useState([1]);
     useEffect(() => {
         if (route.params?.selecitem) {
 
         }
     }, [route.params?.selecitem]);
+
+   
+
     return (
         <View style={styles.container}>
             <View style={styles.view}>
@@ -22,15 +27,16 @@ const Home2 = ({ navigation }) => {
 
 
             </View>
-
-
+           
             <View style={styles.view2}>
-                <Pressable >
+                <Pressable  >
                     <View style={styles.view3}>
-                        <Text style={styles.text5}>Add to cart</Text>
+                        <Text style={styles.text5} >Add to cart</Text>
                     </View>
+                    
                 </Pressable>
             </View>
+          
         </View>
     )
 }
@@ -66,7 +72,8 @@ const styles = StyleSheet.create({
     text2: {
         fontSize: 40,
         fontWeight: 'bold',
-        margin: 10
+        margin: 10,
+     
 
     },
 
@@ -95,5 +102,6 @@ const styles = StyleSheet.create({
         color: 'white'
     }
 })
+
 
 export default Home2;

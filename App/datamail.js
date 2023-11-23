@@ -4,7 +4,7 @@ const datamail = [
         email: '1',
         pass: 1,
         name1:'John',
-        name2:'haha'
+        
         
     },
     {

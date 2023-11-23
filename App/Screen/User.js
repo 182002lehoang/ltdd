@@ -10,7 +10,7 @@ const Taikhoan = ({navigation})=>{
         <View style={styles.view}>
             <Text style={styles.text1}>Tài Khoản</Text>
             <Image style={styles.img} source={require('../Img/profile.png')}></Image>
-            <Text style={styles.text2}>{user.name1}</Text>
+            <Text style={styles.text2}>{user.name}</Text>
             <View style={styles.view1}>
                     <Image style={styles.img2} source={require('../Img/settings.png')}></Image>
                     <Text style={styles.text3}>Cài đặt</Text>

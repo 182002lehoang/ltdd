@@ -16,7 +16,7 @@ const Home1 = ({ navigation }) => {
                     navigation.navigate('Taikhoan',user)
                 }}>
                     <Image style={styles.img1} source={require('../Img/profile.png')}></Image>
-                    <Text style={styles.text4}>{user.name1}</Text>
+                    <Text style={styles.text4}>{user.name}</Text>
                 </Pressable>
             </View>
             <View style={styles.view2}>

@@ -1,8 +1,9 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { StyleSheet, Text, View, Image, Pressable, TextInput, TouchableOpacity } from 'react-native';
-import datamail from "../datamail";
+//import datamail from "../datamail";
 import dataao from "../dataao";
+var url = "https://65561aa484b36e3a431f0c8a.mockapi.io/user";
 
 const Login = () => {
     const navigation = useNavigation();
@@ -11,11 +12,23 @@ const Login = () => {
     const [name, setName] = useState();
     const [pas, setPas] = useState();
     const [bas, setBas] = useState(true);
+    const [state, setState] = useState([]);
 
+    useEffect(() => {
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            setState(data);
+            console.log("====================================");
+            console.log(data);
+            console.log("====================================");
+          });
+      }, [state]);
 
+    
 
     const handleCheck = () => {
-        const user = datamail.find((user) => user.email == name && user.pass == pas);
+        const user = state.find((user) => user.email == name && user.pass == pas);
         if (user) {
             navigation.navigate('Home1', user);
         } else {
@@ -54,6 +67,13 @@ const Login = () => {
             }} >
                 <Text style={styles.text1}>Submit</Text>
             </Pressable>
+
+            <Pressable style={styles.pre1} onPress={()=>{
+                navigation.navigate('DangKy')
+            }}>
+                <Text style={styles.text2}>Đăng Ký</Text>
+            </Pressable>
+            
         </View>
     )
 }
@@ -118,6 +138,7 @@ const styles = StyleSheet.create({
     pre: {
         alignItems: 'center',
         padding: 60,
+       
         
     },
     text1: {
@@ -133,6 +154,21 @@ const styles = StyleSheet.create({
     },
     tch:{
         bottom:-15
+    },
+    pre1:{
+        alignItems:'center',
+        
+    },
+    text2:{
+        fontSize:25,
+        fontWeight:'500',
+        backgroundColor:'white',
+        borderWidth:1,
+        width:140,
+        height:45,
+        textAlign:'center',
+        borderRadius:10,
+        margin:10
     }
 
 })
