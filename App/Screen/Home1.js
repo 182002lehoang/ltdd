@@ -1,29 +1,73 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, TextInput, FlatList, ScrollView } from 'react-native';
 import dataao from "../dataao";
 import { useRoute } from "@react-navigation/native";
-
+import Fuse from "fuse.js";
+// import { TextField } from "@mui/material/TextField";
+// import List from "./List";
 const Home1 = ({ navigation }) => {
+    const [thongtin, setthongtin] = useState([]);
+    var [search, setsearch] = useState("")
+    var [searchResult, setsearchResult] = useState([])
     const route = useRoute();
     const user = route.params;
     const [ao, setAo] = useState(dataao);
-  //  const [count, setCount] = useState();
+    const fuse = new Fuse(dataao, {
+        keys: ["loai"]
+    })
+
+    // const [inputText, setInputText] = useState("");
+    // const inputHandler = (e) => {
+    //     //convert input text to lower case
+    //     var lowerCase = e.target.value.toLowerCase();
+    //     setInputText(lowerCase);
+    // };
+
+    //  const [count, setCount] = useState();
     return (
         <View style={styles.view}>
             <View style={styles.view1}>
                 <Text style={styles.text}>Chào mừng bạn đến với cửa hàng.</Text>
-                <Pressable onPress={()=>{
-                    navigation.navigate('Taikhoan',user)
+                <Pressable onPress={() => {
+                    navigation.navigate('Taikhoan', user)
                 }}>
                     <Image style={styles.img1} source={require('../Img/profile.png')}></Image>
-                    <Text style={styles.text4}>{user.name}</Text>
+                    {/* <Text style={styles.text4}>{user.name}</Text> */}
                 </Pressable>
             </View>
             <View style={styles.view2}>
                 <Image style={styles.img2} source={require('../Img/timkiem.png')}></Image>
-                <TextInput style={styles.ip} placeholder="Tìm kiếm tại đây">
+                <TextInput style={styles.ip} placeholder="Tìm kiếm tại đây" value={search}
+                    onChangeText={(text) => { setsearch(text) }} >
                 </TextInput>
+                <Pressable onPress={() => {
+                    const se = dataao.filter((Se) => Se.loai == search)
+                    if (se) {
+                        setthongtin(se)
+                    }
+                }}>
+                    <Image source={require('../Img/timkiem.png')} style={styles.img5}></Image>
+                </Pressable>
+
             </View>
+            <View>
+                <FlatList data={thongtin}
+                    horizontal={true}
+                    scrollToOverflowEnabled={true}
+                    renderItem={({ item }) => (
+                        <View style={styles.view5}>
+                            <View style={styles.PreSe}>
+                                <Image source={item.img} style={styles.textPreSe}></Image>
+                            </View>
+                            <Text style={styles.text6}>{item.mota}</Text>
+                        </View>
+                    )}
+                    keyExtractor={(item) => item.id}>
+
+                </FlatList>
+            </View>
+
+
             <Text style={styles.text1}>ÁO QUẦN</Text>
             <View style={styles.pre} >
                 <Pressable onPress={() => {
@@ -101,16 +145,23 @@ const Home1 = ({ navigation }) => {
                 numColumns={2}
                 data={ao}
                 renderItem={({ item }) => (
-                    <Pressable style={styles.view3} onPress={() => {
-                        navigation.navigate('Home2', item)
-                    }}>
-                        <Image style={styles.img3} source={item.img}></Image>
-                        <Text style={styles.text5}>{item.mota}</Text>
-                        <View style={styles.view4}>
-                            <Text style={styles.text3}>{item.money}</Text>
+                    <View>
+                        <Pressable style={styles.view3} onPress={() => {
+                            navigation.navigate('Home2', item)
+                        }}>
+                            <Image style={styles.img3} source={item.img}></Image>
+                            <Text style={styles.text5}>{item.mota}</Text>
+                            <View style={styles.view4}>
+                                <Text style={styles.text3}>{item.money}</Text>
+
+                            </View>
+                        </Pressable>
+                        <Pressable onPress={()=>{
+                            navigation.navigate('Cart')
+                        }}>
                             <Image style={styles.img4} source={require('../Img/add.png')} ></Image>
-                        </View>
-                    </Pressable>
+                        </Pressable>
+                    </View>
 
                 )}
                 keyExtractor={item => item.id}
@@ -224,7 +275,33 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '500',
         left: 20
+    },
+    list: {
+        marginTop: 30,
+        flexDirection: 'row'
+
+    }, img5: {
+        width: 30,
+        height: 30,
+        margin: 10
+    },
+    view5: {
+        margin: 10
+    },
+    textPreSe: {
+        width: 80,
+        height: 50,
+        resizeMode: 'contain'
+    },
+    PreSe: {
+        flexDirection: 'row'
+    },
+    text6: {
+        fontSize: 12,
+        textAlign: 'center',
+        fontWeight: '500'
     }
+
 
 })
 export default Home1;

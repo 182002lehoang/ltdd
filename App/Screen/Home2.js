@@ -29,7 +29,9 @@ const Home2 = ({ navigation }) => {
             </View>
            
             <View style={styles.view2}>
-                <Pressable  >
+                <Pressable  onPress={()=>{
+                    navigation.navigate('Home1',user)
+                }}>
                     <View style={styles.view3}>
                         <Text style={styles.text5} >Add to cart</Text>
                     </View>
