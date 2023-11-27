@@ -7,14 +7,15 @@ const Home2 = ({ navigation }) => {
     const route = useRoute();
     const user = route.params;
     const [count,setCount] = useState([1]);
+    const [cart, setCart] = useState([]);
     useEffect(() => {
         if (route.params?.selecitem) {
 
         }
     }, [route.params?.selecitem]);
-
-   
-
+  
+    // Navigate to Home1 screen
+    
     return (
         <View style={styles.container}>
             <View style={styles.view}>
@@ -29,11 +30,13 @@ const Home2 = ({ navigation }) => {
             </View>
            
             <View style={styles.view2}>
-                <Pressable  onPress={()=>{
-                    navigation.navigate('Home1',user)
+                <Pressable  onPress={()=>{navigation.navigate('Home1',user);
+
+                     console.log(user);
+
                 }}>
                     <View style={styles.view3}>
-                        <Text style={styles.text5} >Add to cart</Text>
+                        <Text style={styles.text5} >Trở Về</Text>
                     </View>
                     
                 </Pressable>

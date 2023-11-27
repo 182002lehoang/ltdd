@@ -43,7 +43,7 @@ const Login = () => {
             <Image style={styles.img} source={require('../Img/font.png')}></Image>
             <Text style={styles.text}> Đăng nhập</Text>
             <View style={styles.view1}>
-                <TextInput style={styles.ip} placeholder="Email" value={name} onChangeText={(text) => setName(text)}>
+                <TextInput style={styles.ip} placeholder="User" value={name} onChangeText={(text) => setName(text)}>
 
                 </TextInput>
                 <Image style={styles.img1} source={require('../Img/user.png')}></Image>

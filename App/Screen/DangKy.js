@@ -45,7 +45,7 @@ const DangKy = () => {
           onChangeText={(text) => {
             setName(text);
           }}
-          placeholder="Email"
+          placeholder="User"
         />
         <TextInput
           style={styles.textIn}

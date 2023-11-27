@@ -15,6 +15,28 @@ const Home1 = ({ navigation }) => {
     const fuse = new Fuse(dataao, {
         keys: ["loai"]
     })
+    const [cart, setCart] = useState([]);
+    const handleAddToCart = (item) => {
+        // Check if item is already in cart
+        const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+
+        if (existingItem) {
+            // Update quantity if item already exists
+
+            setCart((prevState) =>
+                prevState.map((cartItem) =>
+                    cartItem.id === item.id
+                        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                        : cartItem
+                )
+            );
+            navigation.navigate('Cart', user)
+            // console.log(cart);
+        } else {
+            // Add new item to cart
+            setCart((prevState) => [...prevState, { ...item, quantity: 1 }]);
+        }
+    };
 
     // const [inputText, setInputText] = useState("");
     // const inputHandler = (e) => {
@@ -36,7 +58,7 @@ const Home1 = ({ navigation }) => {
                 </Pressable>
             </View>
             <View style={styles.view2}>
-                <Image style={styles.img2} source={require('../Img/timkiem.png')}></Image>
+                {/* <Image style={styles.img2} source={require('../Img/timkiem.png')}></Image> */}
                 <TextInput style={styles.ip} placeholder="Tìm kiếm tại đây" value={search}
                     onChangeText={(text) => { setsearch(text) }} >
                 </TextInput>
@@ -148,18 +170,20 @@ const Home1 = ({ navigation }) => {
                     <View>
                         <Pressable style={styles.view3} onPress={() => {
                             navigation.navigate('Home2', item)
+                            // () => handleAddToCart(item)
                         }}>
                             <Image style={styles.img3} source={item.img}></Image>
                             <Text style={styles.text5}>{item.mota}</Text>
                             <View style={styles.view4}>
                                 <Text style={styles.text3}>{item.money}</Text>
-
+                                <Image source={require('../Img/shop.png')} style={styles.img4}></Image>
                             </View>
                         </Pressable>
-                        <Pressable onPress={()=>{
-                            navigation.navigate('Cart')
+
+                        <Pressable onPress={() => {
+                            navigation.navigate('Home2', user)
                         }}>
-                            <Image style={styles.img4} source={require('../Img/add.png')} ></Image>
+                            {/* <Image style={styles.img4} source={require('../Img/add.png')} ></Image> */}
                         </Pressable>
                     </View>
 
@@ -168,7 +192,30 @@ const Home1 = ({ navigation }) => {
             >
 
             </FlatList>
-
+            {/* <FlatList
+                data={dataao}
+                renderItem={({ item }) => (
+                    <Pressable onPress={() => handleAddToCart(item)}>
+                        <Image source={item.img} />
+                        <Text>{item.mota}</Text>
+                        <Text>{item.money}</Text>
+                        <Image style={styles.img4} source={require('../Img/add.png')} ></Image>
+                    </Pressable>
+                )}
+            /> */}
+            <View style={styles.view6}>
+                <Image source={require('../Img/house.png')} style={styles.img6}></Image>
+                <Pressable onPress={()=>{
+                    navigation.navigate('GH')
+                }}>
+                    <Image source={require('../Img/shop.png')} style={styles.img6}></Image>
+                </Pressable>
+                <Pressable onPress={() => {
+                    navigation.navigate('Taikhoan', user)
+                }}>
+                    <Image source={require('../Img/user.png')} style={styles.img6}></Image>
+                </Pressable>
+            </View>
 
         </View>
     )
@@ -237,12 +284,14 @@ const styles = StyleSheet.create({
 
     },
     view3: {
-        justifyContent: 'center'
+        justifyContent: 'center',
+
     },
     img3: {
         width: 200,
         height: 150,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+
     },
     text4: {
         fontSize: 12,
@@ -281,9 +330,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
 
     }, img5: {
-        width: 30,
-        height: 30,
-        margin: 10
+        width: 35,
+        height: 20,
+        margin: 10,
+        resizeMode: 'contain',
+        backgroundColor: '#97aee0',
+        width: 50,
+        height: 40,
+        borderRadius: 15
+
+
     },
     view5: {
         margin: 10
@@ -300,7 +356,21 @@ const styles = StyleSheet.create({
         fontSize: 12,
         textAlign: 'center',
         fontWeight: '500'
+    },
+    img6: {
+        height: 40,
+        width: 60,
+        resizeMode: 'contain',
+        borderWidth: 1,
+        borderRadius: 15,
+        backgroundColor: '#BBDEFB'
+    },
+    view6: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+
     }
+
 
 
 })
